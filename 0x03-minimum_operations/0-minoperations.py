@@ -1,16 +1,15 @@
 #!/usr/bin/python3
 """
-mimoperation
+minoperation
 """
-
-
 def minOperations(n):
-if n <= 1:
-return 0
-if n == 2:
-return 2
-else:
-for i in range(n - 1, 0, -1):
-if n % i == 0:
-op = n // i
-return op + minOperations(i)
+    if type(n) is not int or n < 2:
+        return 0
+    op = 0
+    for i in range(2, int(n ** (1 / 2))):
+        while n % i == 0:
+            op += i
+            n = n/i
+    if n > 1:
+        op += n
+    return int(op)
