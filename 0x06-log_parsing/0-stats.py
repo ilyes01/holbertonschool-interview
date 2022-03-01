@@ -1,36 +1,30 @@
 #!/usr/bin/python3
-"""
-script reads stdin line
-"""
-if __name__ == "__main__":
-    import sys
-    import signal
-    fs = fileSize = 0
-    statCount = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
-  def handleTen(statCount, fileSize):
-      print("File size: {}".format(fileSize))
-      for key in sorted(statCount.keys()):
-          if statCount[key] == 0:
-              continue
-            print("{}: {}".format(key, statCount[key]))
-    try:
-        for line in sys.stdin:
-            fs += 1
-            split = line.split(" ")
-            try:
-                status = split[-2]
-                fileSize += int(split[-1])
+""" script that read stdin line by line """
+import sys
 
-                if status in statCount:
-                    statCount[status] += 1
-            except Exception:
-                pass
 
-            if fs % 10 == 0:
-                handleTen(statCount, fileSize)
-        else:
-            handleTen(statCount, fileSize)
-
-    except (KeyboardInterrupt, SystemExit):
-        handleTen(statCount, fileSize)
-        raise
+i = 0
+FileSize = 0
+status = {'200': 0, '301': 0, '400': 0, '401': 0,
+          '403': 0, '404': 0, '405': 0, '500': 0}
+codes = ['200', '301', '400', '401', '403', '404', '405', '500']
+try:
+    for line in sys.stdin:
+        i += 1
+        sp = line.split(' ')
+        if len(sp) > 2:
+            FileSize += int(sp[-1])
+            if sp[-2] in status:
+                status[sp[-2]] += 1
+        if i % 10 == 0:
+            print("File size: {}".format(FileSize))
+            for code in codes:
+                if status[code]:
+                    print("{}: {}".format(code, status[code]))
+except KeyboardInterrupt:
+    pass
+finally:
+    print("File size: {}".format(FileSize))
+    for code in codes:
+        if status[code]:
+            print("{}: {}".format(code, status[code]))
