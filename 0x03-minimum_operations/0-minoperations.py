@@ -1,15 +1,20 @@
 #!/usr/bin/python3
 """
-minoperation
+Prototype: def minOperations(n)
+Returns an integer
+If n is impossible to achieve, return 0
 """
+def factorization(n):
+    x = 2
+    y = 0
+    while x <= n:
+        if n % x == 0:
+            n = n // x
+            y += x
+            x -= 1
+        x += 1
+    return y
 def minOperations(n):
-    if type(n) is not int or n < 2:
+    if not isinstance(n, int) or n < 2:
         return 0
-    op = 0
-    for i in range(2, int(n ** (1 / 2))):
-        while n % i == 0:
-            op += i
-            n = n/i
-    if n > 1:
-        op += n
-    return int(op)
+    return factorization(n)
