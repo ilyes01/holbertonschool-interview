@@ -1,8 +1,8 @@
 #include "menger.h"
 /**
- *menger - display 2D
- *@level: integer
- *Return: true
+*menger - display 2D
+*@level: integer
+*Return: true
 */
 
 void menger(int level)
