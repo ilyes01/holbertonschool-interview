@@ -4,7 +4,7 @@
 import sys
 
 """user should called the program with the right arguments"""
-if len(sys.argv) <> 2:
+if len(sys.argv) != 2:
     print("Usage: nqueens N")
     exit(1)
 """ n must be a number"""
