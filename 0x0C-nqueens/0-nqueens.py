@@ -36,7 +36,7 @@ def chess(b, pla1, sold):
         if col == 0:
             sold.append([pla1, x])
             if pla1 != b - 1:
-                chest(b, pla1 + 1, sold)
+                chess(b, pla1 + 1, sold)
             else:
                 print(sold)
             del sold[-1]
