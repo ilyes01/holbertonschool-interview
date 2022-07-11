@@ -11,10 +11,7 @@ if (N < 4):
     print('N must be at least 4')
     exit(1)
 a = 0
-frequence_a = 2
-for i in range(N - 2):
-    Lists = []
-    a += 1
+frequence_a    a += 1
     n = a
     for b in range(N):
         Lists.append([b, a])
