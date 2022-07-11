@@ -1,45 +1,43 @@
 #!/usr/bin/python3
-""" function """
+"""function Nqueens"""
 
 import sys
 
-"""user should called the program with the right arguments"""
+
 if len(sys.argv) != 2:
     print("Usage: nqueens N")
     exit(1)
-""" n must be a number"""
 try:
-    b = int(sys.argv[1])
+    board = int(sys.argv[1])
 except ValueError:
     print("N must be a number")
     exit(1)
-"""n should be bigger than  four"""
-if b < 4:
+if board < 4:
     print("N must be at least 4")
     exit(1)
 
 
-def chess(b, pla1, sold):
+def chest(board, place1, solders):
     """nqueens function"""
-    for x in range(b):
+    for x in range(board):
         col = 0
-        for quen in sold:
+        for quen in solders:
             if x == quen[1]:
                 col = 1
                 break
-            if pla1 - x == quen[0] - quen[1]:
+            if place1 - x == quen[0] - quen[1]:
                 col = 1
                 break
-            if x - quen[1] == quen[0] - pla1:
+            if x - quen[1] == quen[0] - place1:
                 col = 1
                 break
         if col == 0:
-            sold.append([pla1, x])
-            if pla1 != b - 1:
-                chess(b, pla1 + 1, sold)
+            solders.append([place1, x])
+            if place1 != board - 1:
+                chest(board, place1 + 1, solders)
             else:
-                print(sold)
-            del sold[-1]
+                print(solders)
+            del solders[-1]
 
 
-chess(b, 0, [])
+chest(board, 0, [])
