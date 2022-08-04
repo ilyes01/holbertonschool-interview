@@ -13,5 +13,7 @@ request(url, async (error, response, body) => {
         if (error) console.log(error);
         console.log(JSON.parse(body).name);
         resolve();
-      });
+});
+    });
+  }
 });
