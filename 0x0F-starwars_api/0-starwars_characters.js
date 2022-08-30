@@ -1,8 +1,8 @@
 #!/usr/bin/node
 
 const request = require('request');
-const url = `https://swapi.dev/api/films/${movieId}/`;
 const movieId = process.argv[2];
+const url = `https://swapi.dev/api/films/${movieId}/`;
 request(url, async (error, response, body) => {
   if (movieId == null) return;
   if (error) console.log(error);
@@ -12,8 +12,7 @@ request(url, async (error, response, body) => {
         if (error) console.log(error);
         console.log(JSON.parse(body).name);
         resolve();
-});
+      });
     });
   }
-
 });
