@@ -4,7 +4,7 @@ import requests
 
 
 def count_words(subreddit, word_list, count={}, after=""):
-  """ funtion that count keywords in subredit hot list's titles"""
+    """ funtion that count keywords in subredit hot list's titles"""
     if len(count) <= 0:
         for item in word_list:
             count[item] = 0
@@ -17,7 +17,7 @@ def count_words(subreddit, word_list, count={}, after=""):
                 print("{}: {}".format(k[0].lower(), k[1]))
         return None
     url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
-    params = { 'after': after}
+    params = {'limit': 100, 'after': after}
     headers = {'user-agent': 'ilyes'}
     res = requests.get(
         url,
