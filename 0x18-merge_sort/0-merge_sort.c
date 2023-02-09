@@ -1,21 +1,14 @@
 #include "sort.h"
 
 /**
-
-merge - merge two sorted subarrays into a single sorted array
-
-@array: array of table
-
-@temp: temporary array used for merging
-
-@left: start index of the left subarray
-
-@mid: end index of the left subarray and start index of the right subarray
-
-@right: end index of the right subarray
-
-Return: void
-*/
+ * merge - merge two sorted subarrays into a single sorted array
+ * @array: array of table
+ * @temp: temporary array used for merging
+ * @left: start index of the left subarray
+ * @mid: end index of the left subarray and start index of the right subarray
+ * @right: end index of the right subarray
+ * Return: void
+ */
 void merge(int *array, int *temp, int left, int mid, int right)
 {
 	int i, j, k;
@@ -48,19 +41,13 @@ void merge(int *array, int *temp, int left, int mid, int right)
 }
 
 /**
-
-divide_array - divide the array into smaller subarrays
-
-@array: array of the table
-
-@temp: temporary array used for merging
-
-@left: start index of the subarray
-
-@right: end index of the subarray
-
-Return: void
-*/
+ * divide_array - divide the array into smaller subarrays
+ * @array: array of the table
+ * @temp: temporary array used for merging
+ * @left: start index of the subarray
+ * @right: end index of the subarray
+ * Return: void
+ */
 void divide_array(int *array, int *temp, int left, int right)
 {
 	int mid;
@@ -75,15 +62,11 @@ void divide_array(int *array, int *temp, int left, int right)
 }
 
 /**
-
-merge_sort - sort an array using the merge sort algorithm
-
-@array: array of table
-
-@size: size of the array
-
-Return: void
-*/
+ * merge_sort - sort an array using the merge sort algorithm
+ * @array: array of table
+ * @size: size of the array
+ * Return: void
+ */
 void merge_sort(int *array, size_t size)
 {
 	int *temp;
