@@ -4,6 +4,8 @@ Prototype: def minOperations(n)
 Returns an integer
 If n is impossible to achieve, return 0
 """
+
+
 def factorization(n):
     x = 2
     y = 0
@@ -14,6 +16,8 @@ def factorization(n):
             x -= 1
         x += 1
     return y
+
+
 def minOperations(n):
     if not isinstance(n, int) or n < 2:
         return 0
