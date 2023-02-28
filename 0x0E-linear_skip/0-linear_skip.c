@@ -3,20 +3,20 @@
 #include "search.h"
 
 /**
- * valceck -  checker between prev and tmp
- * @: node
+ * valcheck -  checker between prev and tmp
+ * @p: node
  * @current: node
  * @n: what we searchnig for
  * Return: contains the value or NULL
  */
 skiplist_t *valcheck(skiplist_t *p, skiplist_t *current, int n)
 {
-    for (; p != current->next; p = p->next)
-    {
-        if (p->n == n)
-            return (p);
-    }
-    return (NULL);
+	for (; p != current->next; p = p->next)
+	{
+		if (p->n == n)
+			return (p);
+	}
+	return (NULL);
 }
 /**
  * linear_skip - searches sorted skip list of integers
@@ -30,11 +30,13 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 
 	while (current)
 	{
-		if ((current->n < value || ((current->n == value) && !(valcheck(p, current, value))))
+		if ((current->n < value
+		|| ((current->n == value) && !(valcheck(p, current, value))))
 		&& current->next)
 		{
 			if (current->index)
-				printf("Value checked at index [%lu] = [%d]\n", current->index, current->n);
+				printf("Value checked at index [%lu] = [%d]\n",
+				current->index, current->n);
 			p = current;
 			if (!current->express)
 			{
@@ -55,11 +57,11 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 			printf("Value found between indexes [%lu] and [%lu]\n",
 					p->index, current->index);
 			for (; p && p != current->next; p = p->next)
-{
-    printf("Value checked at index [%lu] = [%d]\n", p->index, p->n);
-    if (p->n == value)
-        return p;
-}
+			{
+				printf("Value checked at index [%lu] = [%d]\n", p->index, p->n);
+				if (p->n == value)
+					return (p);
+			}
 			return (NULL);
 		}
 	}
