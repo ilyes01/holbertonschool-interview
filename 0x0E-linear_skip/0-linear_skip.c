@@ -11,12 +11,12 @@
  */
 skiplist_t *valcheck(skiplist_t *p, skiplist_t *current, int n)
 {
-		for (; p != current->next; p = p->next)
-		{
-			if (p->n == n)
-				return (p);
-		}
-		return (NULL);
+	for (; p != current->next; p = p->next)
+	{
+		if (p->n == n)
+			return (p);
+	}
+	return (NULL);
 }
 
 /**
@@ -27,21 +27,21 @@ skiplist_t *valcheck(skiplist_t *p, skiplist_t *current, int n)
  */
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-		skiplist_t *current = list, *p = list;
+	skiplist_t *current = list, *p = list;
 
-		while (current)
+	while (current)
+	{
+		if ((current->n < value || ((current->n == value) &&
+			!(valcheck(p, current, value)))) && current->next)
 		{
-			if ((current->n < value || ((current->n == value) &&
-				!(valcheck(p, current, value)))) && current->next)
-			{
 			if (current->index)
 				printf("Value checked at index [%lu] = [%d]\n",
 					current->index, current->n);
-				p = current;
-				if (!current->express)
-				{
+			p = current;
+			if (!current->express)
+			{
 				while (current->next)
-				current = current->next;
+					current = current->next;
 			}
 			else
 				current = current->express;
@@ -57,8 +57,8 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 				p->index, current->index);
 			for (; p && p != current->next; p = p->next)
 			{
-			printf("Value checked at index [%lu] = [%d]\n",
-				p->index, p->n);
+				printf("Value checked at index [%lu] = [%d]\n",
+					p->index, p->n);
 				if (p->n == value)
 					return (p);
 			}
