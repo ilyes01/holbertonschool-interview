@@ -1,35 +1,38 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "binary_trees.h"
 
+/**
+ * sorted_array_to_avl - Builds an AVL tree from a sorted array
+ *
+ * @array: Pointer to the first element of the array to be converted
+ * @size: Number of element in the array
+ *
+ * Return: Pointer to the root node of the created AVL tree, or NULL on failure
+ */
+avl_t *sorted_array_to_avl(int *array, size_t size)
+{
+    avl_t *tree;
+    size_t middle;
 
-// Recursive function to create nodes for AVL tree
-avl_t *create_node(int *array, avl_t *parent, int start, int end) {
-    int mid = (start + end) / 2;
-    avl_t *new_node = malloc(sizeof(avl_t));
-    // Check if memory allocation was successful
-    if (!new_node) return NULL;
-    // Assign data and parent to the node
-    new_node->n = array[mid];
-    // Create left child node if there's a sub-array on the left
-    new_node->left = start <= mid - 1 ? create_node(array, new_node, start, mid - 1) : NULL;
-    // Create right child node if there's a sub-array on the right
-    new_node->right = mid + 1 <= end ? create_node(array, new_node, mid + 1, end) : NULL;
-    return new_node;
+    if (!array || size == 0)
+        return (NULL);
+
+    /* Allocate memory for the new node */
+    tree = malloc(sizeof(avl_t));
+    if (!tree)
+        return (NULL);
+
+    /* Find the middle element and make it the root */
+    middle = size / 2;
+    tree->n = array[middle];
+    tree->parent = NULL;
+
+    /* Recursively construct the left and right subtrees */
+    tree->left = sorted_array_to_avl(array, middle);
+    if (tree->left)
+        tree->left->parent = tree;
+    tree->right = sorted_array_to_avl(array + middle + 1, size - middle - 1);
+    if (tree->right)
+        tree->right->parent = tree;
+
+    return (tree);
 }
-
-// Function to transform sorted array to AVL tree
-avl_t *sorted_array_to_avl(int *array, size_t size) {
-    int mid = size / 2;
-    avl_t *head = malloc(sizeof(avl_t));
-    // Check if memory allocation was successful
-    if (!head) return NULL;
-    // Assign data to the head node
-    head->n = array[mid];
-    // Create left child node if the array has at least two elements
-    head->left = size >= 2 ? create_node(array, head, 0, mid - 1) : NULL;
-    // Create right child node if the array has at least two elements
-    head->right = size >= 2 ? create_node(array, head, mid + 1, size - 1) : NULL;
-    return head;
-}
-
