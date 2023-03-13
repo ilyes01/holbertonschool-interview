@@ -34,11 +34,9 @@ int advanced_binary(int *array, size_t size, int value)
 	}
 	else if (array[half] > value)
 		return (advanced_binary(array, half + 1, value));
-	else
-	{
-		index = advanced_binary(array + half + 1, size - half - 1, value);
-		if (index == -1)
-			return (-1);
-		return (half + 1 + index);
-	}
+
+	index = advanced_binary(array + half + 1, size - half - 1, value);
+	if (index == -1)
+		return (-1);
+	return (half + 1 + index);
 }
