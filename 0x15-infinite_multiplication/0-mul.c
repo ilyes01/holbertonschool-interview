@@ -46,6 +46,15 @@ void format_result(int *result, int len, char *str) {
   str[len] = '\0';
 }
 
+void remove_first_char(char *str) {
+  int len = strlen(str);
+  int i;
+  for (i = 0; i < len; i++) {
+    str[i] = str[i+1];
+  }
+}
+
+
 int main(int argc, char **argv) {
   if (argc != 3) {
     print_error_and_exit();
@@ -60,7 +69,7 @@ int main(int argc, char **argv) {
 
   char result_str[2001];
   format_result(result, num1_len + num2_len, result_str);
-
+  remove_first_char(result_str);
   print_result(result_str);
 
   return 0;
