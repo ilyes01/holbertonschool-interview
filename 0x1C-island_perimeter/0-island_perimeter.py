@@ -2,6 +2,7 @@
 """hfhtfnhttte"""
 
 def island_perimeter(grid):
+    """hfdgdthrtyerezezzéééé"""
     perimeter = 0
     rows = len(grid)
     cols = len(grid[0])
