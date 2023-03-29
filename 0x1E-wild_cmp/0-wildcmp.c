@@ -11,15 +11,12 @@ int wildcmp(char *s1, char *s2)
 {
 	if (*s2 == '*')
 	{
-		/* skip consecutive '*' characters in s2 */
 		while (*s2 == '*')
 			s2++;
 
-		/* check if s2 is just '*' */
 		if (*s2 == '\0')
 			return 1;
 
-		/* find the next matching character in s1 after the '*' in s2 */
 		while (*s1)
 		{
 			if (wildcmp(s1, s2))
@@ -29,13 +26,11 @@ int wildcmp(char *s1, char *s2)
 	}
 	else if (*s1 != '\0' && *s2 != '\0')
 	{
-		/* check if the characters match and recursively check the rest of the strings */
 		if (*s1 == *s2 || *s2 == '?')
 			return wildcmp(s1 + 1, s2 + 1);
 	}
 	else
 	{
-		/* check if both strings are at the end */
 		return (*s1 == *s2);
 	}
 
