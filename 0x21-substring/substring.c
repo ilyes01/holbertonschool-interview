@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <string.h>
-
 #include "substring.h"
 
 /**
@@ -18,41 +17,41 @@
  */
 int *find_substring(char const *s, char const **words, int nb_words, int *n)
 {
-    int len, word_len, remaining, j, i, k;
-    int *count, *res;
+	int len, word_len, remaining, j, i, k;
+	int *count, *res;
 
-    if (!s || !words || !*words || !n || nb_words < 1)
-        return (NULL);
+	if (!s || !words || !*words || !n || nb_words < 1)
+		return (NULL);
 
-    len = strlen(s);
-    word_len = strlen(words[0]);
-    count = calloc(nb_words, sizeof(int));
-    res = malloc(len * sizeof(int));
+	len = strlen(s);
+	word_len = strlen(words[0]);
+	count = calloc(nb_words, sizeof(*count));
+	res = malloc(len * sizeof(*res));
 
-    for (i = 0, *n = 0; i <= len - nb_words * word_len; i++)
-    {
-        remaining = nb_words;
-        for (j = 0; j < nb_words; j++)
-        {
-            for (k = 0; k < nb_words; k++)
-            {
-                if (count[k] == 0 && strncmp(s + i + j * word_len, words[k], word_len) == 0)
-                {
-                    count[k] = 1;
-                    remaining--;
-                    break;
-                }
-            }
-            if (k == nb_words)
-                break;
-        }
-        if (remaining == 0)
-            res[(*n)++] = i;
-        memset(count, 0, nb_words * sizeof(int));
-    }
+	for (i = 0, *n = 0; i <= len - nb_words * word_len; i++)
+	{
+		remaining = nb_words;
+		for (j = 0; j < nb_words; j++)
+		{
+			for (k = 0; k < nb_words; k++)
+			{
+				if (count[k] == 0 && strncmp(s + i + j * word_len, words[k], word_len) == 0)
+				{
+					count[k] = 1;
+					remaining--;
+					break;
+				}
+			}
+			if (k == nb_words)
+				break;
+		}
+		if (remaining == 0)
+			res[(*n)++] = i;
+		memset(count, 0, nb_words * sizeof(*count));
+	}
 
-    free(count);
+	free(count);
 
-    return ((*n) > 0 ? res : NULL);
+	return ((*n) > 0 ? res : NULL);
 }
 
