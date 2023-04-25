@@ -4,7 +4,7 @@
  * wildcmp - compares two strings and returns 1 if they can be considered
  * identical, otherwise return 0.
  * @s1: the first string to be compared
- * @s2: the second string to be compared. It can contain the special character *
+ * @s2: the second string to be compared. It can contain the special character
  *
  * Return: 1 if s1 and s2 are considered identical, otherwise 0
  */
