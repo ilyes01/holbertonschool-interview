@@ -1,4 +1,3 @@
-
 Requirements
 General
 Allowed editors: vi, vim, emacs
