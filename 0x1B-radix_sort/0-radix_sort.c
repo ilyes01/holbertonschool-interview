@@ -1,55 +1,53 @@
+#include "sort.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include "sort.h"
+#include <stdint.h>
 
 /**
- * radix_sort - Sorts an array of integers in ascending order using
- *              the LSD radix sort algorithm.
- *
- * @array: The array to be sorted
- * @size: Number of elements in @array
+ * radix_sort - sorts an array of integers in ascending order
+ * using the Radix sort algorithm
+ * @array: the array of integers to sort
+ * @size: the size of the array
  */
 void radix_sort(int *array, size_t size)
 {
-    int *tmp, *bucket;
-    size_t i, j, k, exp;
+    size_t i, exp = 1;
+    int max_value = 0;
+    int *output = NULL;
 
-    if (!array || size < 2)
+    if (array == NULL || size < 2)
         return;
 
-    tmp = malloc(size * sizeof(*tmp));
-    if (!tmp)
+    output = malloc(sizeof(int) * size);
+    if (output == NULL)
         return;
 
-    bucket = malloc(10 * sizeof(*bucket));
-    if (!bucket)
+    for (i = 0; i < size; i++)
+        max_value = array[i] > max_value ? array[i] : max_value;
+
+    while (max_value / exp > 0)
     {
-        free(tmp);
-        return;
-    }
+        size_t bucket[10] = {0};
 
-    for (exp = 1, k = 0; k < 10; ++k, exp *= 10)
-    {
-        memset(bucket, 0, 10 * sizeof(*bucket));
+        for (i = 0; i < size; i++)
+            bucket[array[i] / exp % 10]++;
 
-        for (i = 0; i < size; ++i)
-            ++bucket[(array[i] / exp) % 10];
-
-        for (i = 1; i < 10; ++i)
+        for (i = 1; i < 10; i++)
             bucket[i] += bucket[i - 1];
 
-        for (i = size - 1; i != (size_t)(-1); --i)
+        for (i = size - 1; i < SIZE_MAX; i--)
         {
-            j = (array[i] / exp) % 10;
-            tmp[--bucket[j]] = array[i];
+            output[bucket[array[i] / exp % 10] - 1] = array[i];
+            bucket[array[i] / exp % 10]--;
         }
 
-        memcpy(array, tmp, size * sizeof(*array));
+        for (i = 0; i < size; i++)
+            array[i] = output[i];
+
+        exp *= 10;
         print_array(array, size);
     }
 
-    free(bucket);
-    free(tmp);
+    free(output);
 }
 
