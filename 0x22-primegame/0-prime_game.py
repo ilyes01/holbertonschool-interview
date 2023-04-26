@@ -22,7 +22,7 @@ def isWinner(x, nums):
         ben_moves = 0
         while prime_nums:
             if maria_moves == ben_moves:
-                """ It's Maria's turn to move """
+
                 for prime in prime_nums:
                     multiples = [i for i in range(prime, n+1, prime)]
                     if set(multiples).issubset(set(prime_nums)):
@@ -30,11 +30,9 @@ def isWinner(x, nums):
                         maria_moves += 1
                         break
                 else:
-                    """ Maria cannot make a move, Ben wins. """
                     ben_wins += 1
                     break
             else:
-                """ It's Ben's turn to move """
                 for prime in prime_nums:
                     multiples = [i for i in range(prime, n+1, prime)]
                     if set(multiples).issubset(set(prime_nums)):
@@ -42,11 +40,10 @@ def isWinner(x, nums):
                         ben_moves += 1
                         break
                 else:
-                    """ Ben cannot make a move, Maria wins """
+
                     maria_wins += 1
                     break
         else:
-            """ All prime numbers have been removed, the last player wins. """
             if maria_moves == ben_moves:
                 ben_wins += 1
             elif maria_moves > ben_moves:
