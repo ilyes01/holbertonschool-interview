@@ -1,58 +1,44 @@
 #!/usr/bin/python3
-"""fucntion"""
+"""functions"""
 
 
-def is_prime(n):
-    """Returns True if n is prime, False otherwise."""
-    if n <= 1:
-        return False
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
+def generate_primes(n):
+    """genetate primes"""
+    primes = [True] * (n+1)
+    primes[0] = primes[1] = False
+    for i in range(2, int(n**0.5)+1):
+        if primes[i]:
+            for j in range(i*i, n+1, i):
+                primes[j] = False
+    return [i for i in range(2, n+1) if primes[i]]
+
+
+def play_round(n):
+    """play round"""
+    primes = generate_primes(n)
+    player = 'Maria'
+    while True:
+        if not primes:
+            return 'Ben'
+        p = primes[0]
+        primes = [x for x in primes if x % p != 0]
+        if player == 'Maria':
+            player = 'Ben'
+        else:
+            player = 'Maria'
+        if not primes:
+            return player
 
 
 def isWinner(x, nums):
-    """Determines the winner of each game."""
-    maria_wins = 0
-    ben_wins = 0
+    """ben is the winner"""
+    wins = {'Maria': 0, 'Ben': 0}
     for n in nums:
-        prime_nums = [i for i in range(2, n+1) if is_prime(i)]
-        maria_moves = 0
-        ben_moves = 0
-        while prime_nums:
-            if maria_moves == ben_moves:
-
-                for prime in prime_nums:
-                    multiples = [i for i in range(prime, n+1, prime)]
-                    if set(multiples).issubset(set(prime_nums)):
-                        prime_nums = list(set(prime_nums) - set(multiples))
-                        maria_moves += 1
-                        break
-                else:
-                    ben_wins += 1
-                    break
-            else:
-                for prime in prime_nums:
-                    multiples = [i for i in range(prime, n+1, prime)]
-                    if set(multiples).issubset(set(prime_nums)):
-                        prime_nums = list(set(prime_nums) - set(multiples))
-                        ben_moves += 1
-                        break
-                else:
-
-                    maria_wins += 1
-                    break
-        else:
-            if maria_moves == ben_moves:
-                ben_wins += 1
-            elif maria_moves > ben_moves:
-                maria_wins += 1
-            else:
-                ben_wins += 1
-    if maria_wins == ben_wins:
-        return None
-    elif maria_wins > ben_wins:
-        return "Maria"
+        winner = play_round(n)
+        wins[winner] += 1
+    if wins['Maria'] > wins['Ben']:
+        return 'Maria'
+    elif wins['Ben'] > wins['Maria']:
+        return 'Ben'
     else:
-        return "Ben"
+        return None
