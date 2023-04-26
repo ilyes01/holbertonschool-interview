@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""fucntion"""
+
+
 def is_prime(n):
     """Returns True if n is prime, False otherwise."""
     if n <= 1:
