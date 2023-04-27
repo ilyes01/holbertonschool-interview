@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"""This module contains the function iswinner."""
+"""This module contains the function isWinner"""
 
 
 def isWinner(x, nums):
-    """Determines the winner."""
+    """Determines the winner"""
 
     def is_prime(n):
         """Checks if a number is prime."""
@@ -49,3 +49,4 @@ def isWinner(x, nums):
         return "Ben"
     else:
         return None
+
