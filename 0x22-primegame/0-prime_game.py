@@ -1,9 +1,5 @@
-#!/usr/bin/python3
-"""python function"""
-
-
 def is_prime(n):
-    """is prime"""
+    """Check if a number is prime"""
     if n < 2:
         return False
     for i in range(2, int(n ** 0.5) + 1):
@@ -13,8 +9,7 @@ def is_prime(n):
 
 
 def get_primes(n):
-    """get prime"""
-
+    """Get the set of prime numbers up to n"""
     primes = set()
     for i in range(2, n + 1):
         if is_prime(i):
@@ -23,22 +18,21 @@ def get_primes(n):
 
 
 def isWinner(x, nums):
-
-    """is winner"""
-    winners = []
+    """Determine the winner of the game"""
+    ben_wins = 0
+    maria_wins = 0
     for n in nums:
         primes = get_primes(n)
         if len(primes) == 0:
-            winners.append(None)
+            continue
         elif len(primes) % 2 == 0:
-            winners.append('Ben')
+            ben_wins += 1
         else:
-            winners.append('Maria')
-    ben_wins = winners.count('Ben')
-    maria_wins = winners.count('Maria')
+            maria_wins += 1
     if ben_wins > maria_wins:
-        return 'Ben'
+        return "Winner: Ben"
     elif maria_wins > ben_wins:
-        return 'Maria'
+        return "Winner: Maria"
     else:
-        return 'Ben'
+        return None
+
