@@ -1,41 +1,43 @@
 #!/usr/bin/python3
-"""python function"""
-
-
-def is_prime(n):
-    """Check if a number is prime"""
-    if n < 2:
-        return False
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
-
-
-def get_primes(n):
-    """Get the set of prime numbers up to n"""
-    primes = set()
-    for i in range(2, n + 1):
-        if is_prime(i):
-            primes.add(i)
-    return primes
+"""py function"""
 
 
 def isWinner(x, nums):
-    """Determine the winner of the game"""
-    ben_wins = 0
-    maria_wins = 0
-    for n in nums:
-        primes = get_primes(n)
-        if len(primes) == 0:
-            continue
-        elif len(primes) % 2 == 0:
-            ben_wins += 1
-        else:
-            maria_wins += 1
-    if ben_wins > maria_wins:
-        return "Winner: Ben"
-    elif maria_wins > ben_wins:
-        return "Winner: Maria"
+    """
+    Determines the winner of a prime game for each round.
+
+    """
+    def get_primes(n):
+        """Returns a list of prime numbers"""
+        sieve = [True] * (n + 1)
+        sieve[0] = sieve[1] = False
+        for i in range(2, int(n ** 0.5) + 1):
+            if sieve[i]:
+                sieve[i*i:n+1:i] = [False] * ((n - i*i) // i + 1)
+        return [i for i in range(n + 1) if sieve[i]]
+
+    def play_game(primes, n):
+        """Determines the winner of a prime game    """
+        remaining = set(range(2, n + 1))
+        turn = 1
+        while remaining:
+            for prime in primes:
+                if prime in remaining:
+                    remaining -= set(range(prime, n + 1, prime))
+                    break
+            else:
+                break
+            turn = 3 - turn
+        return turn
+    wins = [0, 0]
+    for i in range(x):
+        primes = get_primes(nums[i])
+        winner = play_game(primes, nums[i])
+        if winner is not None:
+            wins[winner - 1] += 1
+    if wins[0] > wins[1]:
+        return "Maria"
+    elif wins[1] > wins[0]:
+        return "Ben"
     else:
         return None
