@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-"""This module contains the function isWinner"""
+"""This module contains the function iswinner."""
 
 
 def isWinner(x, nums):
-    """Determines the winner"""
+    """Determines the winner."""
 
     def is_prime(n):
+        """Checks if a number is prime."""
         if n < 2:
             return False
         for i in range(2, int(n ** 0.5) + 1):
