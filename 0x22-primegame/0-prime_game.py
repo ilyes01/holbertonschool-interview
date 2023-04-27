@@ -6,7 +6,7 @@ def isWinner(x, nums):
     """Determines the winner"""
 
     def is_prime(n):
-        """Checks if a number is prime."""
+        """isprime"""
         if n < 2:
             return False
         for i in range(2, int(n ** 0.5) + 1):
@@ -48,5 +48,4 @@ def isWinner(x, nums):
     elif wins["Ben"] > wins["Maria"]:
         return "Ben"
     else:
-        return None
-
+        return None1~
