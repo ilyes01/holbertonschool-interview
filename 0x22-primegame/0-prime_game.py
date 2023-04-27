@@ -1,20 +1,9 @@
 #!/usr/bin/python3
-"""
-This module contains the function isWinner
-"""
+"""This module contains the function isWinner"""
 
 
 def isWinner(x, nums):
-    """
-    Determines the winner
-
-    Args:
-        x (int): the number of rounds to play
-        nums (list): a list of integers n
-
-    Returns:
-        str: the name of the player
-    """
+    """Determines the winner"""
     def is_prime(n):
         if n < 2:
             return False
