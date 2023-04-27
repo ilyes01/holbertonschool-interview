@@ -4,9 +4,9 @@
 
 def isWinner(x, nums):
     """Determines the winner"""
+    # end of function
 
     def is_prime(n):
-        """isprime"""
         if n < 2:
             return False
         for i in range(2, int(n ** 0.5) + 1):
@@ -48,4 +48,4 @@ def isWinner(x, nums):
     elif wins["Ben"] > wins["Maria"]:
         return "Ben"
     else:
-        return None1~
+        return None
