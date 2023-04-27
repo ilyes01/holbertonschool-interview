@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""python function"""
+
 
 def is_prime(n):
     """is prime"""
