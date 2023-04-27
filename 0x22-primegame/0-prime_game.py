@@ -4,8 +4,7 @@
 
 def isWinner(x, nums):
     """Determines the winner"""
-    pass
-
+    total_games = len(nums)
 
     def is_prime(n):
         """isprime"""
