@@ -1,43 +1,60 @@
 #!/usr/bin/python3
-"""py function"""
+"""
+This module contains the function isWinner
+"""
 
 
 def isWinner(x, nums):
     """
-    Determines the winner of a prime game for each round.
+    Determines the winner
 
+    Args:
+        x (int): the number of rounds to play
+        nums (list): a list of integers n
+
+    Returns:
+        str: the name of the player
     """
-    def get_primes(n):
-        """Returns a list of prime numbers"""
-        sieve = [True] * (n + 1)
-        sieve[0] = sieve[1] = False
+    def is_prime(n):
+        if n < 2:
+            return False
         for i in range(2, int(n ** 0.5) + 1):
-            if sieve[i]:
-                sieve[i*i:n+1:i] = [False] * ((n - i*i) // i + 1)
-        return [i for i in range(n + 1) if sieve[i]]
+            if n % i == 0:
+                return False
+        return True
 
-    def play_game(primes, n):
-        """Determines the winner of a prime game    """
-        remaining = set(range(2, n + 1))
-        turn = 1
-        while remaining:
-            for prime in primes:
-                if prime in remaining:
-                    remaining -= set(range(prime, n + 1, prime))
-                    break
-            else:
-                break
-            turn = 3 - turn
-        return turn
-    wins = [0, 0]
+    wins = {"Maria": 0, "Ben": 0}
+
     for i in range(x):
-        primes = get_primes(nums[i])
-        winner = play_game(primes, nums[i])
-        if winner is not None:
-            wins[winner - 1] += 1
-    if wins[0] > wins[1]:
+        n = nums[i]
+        primes = set()
+        for j in range(1, n + 1):
+            if is_prime(j):
+                primes.add(j)
+        turn = "Maria"
+        while len(primes) > 0:
+            if turn == "Maria":
+                prime = max(primes)
+                primes -= set(range(prime, n + 1, prime))
+                if prime == 1:
+                    turn = "Ben"
+                else:
+                    turn = "Ben"
+            else:
+                prime = min(primes)
+                primes -= set(range(prime, n + 1, prime))
+                if prime == 1:
+                    turn = "Maria"
+                else:
+                    turn = "Maria"
+        if turn == "Maria":
+            wins["Ben"] += 1
+        else:
+            wins["Maria"] += 1
+
+    if wins["Maria"] > wins["Ben"]:
         return "Maria"
-    elif wins[1] > wins[0]:
+    elif wins["Ben"] > wins["Maria"]:
         return "Ben"
     else:
         return None
