@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""python function"""
+
+
 def is_prime(n):
     """Check if a number is prime"""
     if n < 2:
@@ -35,4 +39,3 @@ def isWinner(x, nums):
         return "Winner: Maria"
     else:
         return None
-
