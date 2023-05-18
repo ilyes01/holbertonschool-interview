@@ -3,29 +3,22 @@
 
 #include <stddef.h>
 
-/**
- * struct binary_tree_s - Binary tree node
- *
- * @n: Integer stored in the node
- * @parent: Pointer to the parent node
- * @left: Pointer to the left child node
- * @right: Pointer to the right child node
- */
+/* Structure for a binary tree node */
+typedef struct binary_tree_s binary_tree_t;
+
+/* Binary tree node */
 struct binary_tree_s
 {
     int n;
-    struct binary_tree_s *parent;
-    struct binary_tree_s *left;
-    struct binary_tree_s *right;
+    binary_tree_t *parent;
+    binary_tree_t *left;
+    binary_tree_t *right;
 };
 
-typedef struct binary_tree_s binary_tree_t;
-typedef struct binary_tree_s avl_t;
-
 /* Function prototypes */
-int binary_tree_is_avl(const binary_tree_t *tree);
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
 void binary_tree_print(const binary_tree_t *tree);
 
-#endif /* BINARY_TREES_H */
+int binary_tree_is_avl(const binary_tree_t *tree);
 
+#endif /* BINARY_TREES_H */
