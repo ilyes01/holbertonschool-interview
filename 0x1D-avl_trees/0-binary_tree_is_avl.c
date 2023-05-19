@@ -54,14 +54,12 @@ int binary_tree_is_bst(const binary_tree_t *tree, int min, int max)
  */
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
-	int left_height, right_height, height_diff;
-
 	if (tree == NULL)
-		return (0);
+		return (1);
 
-	left_height = binary_tree_height(tree->left);
-	right_height = binary_tree_height(tree->right);
-	height_diff = left_height - right_height;
+	int left_height = binary_tree_height(tree->left);
+	int right_height = binary_tree_height(tree->right);
+	int height_diff = left_height - right_height;
 
 	if (height_diff > 1 || height_diff < -1)
 		return (0);
