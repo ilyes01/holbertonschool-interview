@@ -2,6 +2,7 @@
 #include <limits.h>
 #include <stdbool.h>
 #include <stdlib.h>
+
 /**
  * binary_tree_height - Measures the height of a binary tree.
  * @tree: A pointer to the root node of the tree.
@@ -49,22 +50,18 @@ int binary_tree_is_bst(const binary_tree_t *tree, int min, int max)
  */
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
-	if (tree == NULL)
-		return (0);
+        if (tree == NULL)
+                return (1);
 
-	if (!binary_tree_is_bst(tree, INT_MIN, INT_MAX))
-		return (1);
-
-	if (binary_tree_height(tree->left) > binary_tree_height(tree->right))
-        {
-                if ((binary_tree_height(tree->left) - binary_tree_height(tree->right)) > 1)
-                        return (1);
-        }
-        else
+        if (!binary_tree_is_bst(tree, INT_MIN, INT_MAX))
                 return (0);
 
-	if (!binary_tree_is_avl(tree->left) || !binary_tree_is_avl(tree->right))
-		return (0);
+        if (abs((int)(binary_tree_height(tree->left) - binary_tree_height(tree->right))) > 1)
+                return (0);
 
-	return (1);
+        if (!binary_tree_is_avl(tree->left) || !binary_tree_is_avl(tree->right))
+                return (0);
+
+        return (1);
 }
+
