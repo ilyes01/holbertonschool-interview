@@ -2,17 +2,6 @@
 #include <stdio.h>
 #include "binary_trees.h"
 
-binary_tree_t *binary_tree_node(binary_tree_t *parent, int n)
-{
-  binary_tree_t *node;
-  node = malloc(sizeof(binary_tree_t));
-  node->parent = parent;
-  node->n = n;
-  node->left = NULL;
-  node->right = NULL;
-  return (node);
-}
-
 /**
  * basic_tree - Build a basic binary tree
  *
@@ -43,23 +32,26 @@ int main(void)
 
     root = basic_tree();
 
+    binary_tree_print(root);
     avl = binary_tree_is_avl(root);
     printf("Is %d avl: %d\n", root->n, avl);
     avl = binary_tree_is_avl(root->left);
     printf("Is %d avl: %d\n", root->left->n, avl);
 
     root->right->left = binary_tree_node(root->right, 97);
+    binary_tree_print(root);
     avl = binary_tree_is_avl(root);
     printf("Is %d avl: %d\n", root->n, avl);
 
     root = basic_tree();
     root->right->right->right = binary_tree_node(root->right->right, 430);
+    binary_tree_print(root);
     avl = binary_tree_is_avl(root);
     printf("Is %d avl: %d\n", root->n, avl);
 
     root->right->right->right->left = binary_tree_node(root->right->right->right, 420);
+    binary_tree_print(root);
     avl = binary_tree_is_avl(root);
     printf("Is %d avl: %d\n", root->n, avl);
     return (0);
 }
-
