@@ -1,9 +1,12 @@
 #ifndef BINARY_TREES_H
 #define BINARY_TREES_H
 
-#include <stddef.h>
+/* INCLUDED LIBRARIES */
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
 
-/* Basic Binary Tree Structure */
+/* STRUCTS AND DEFINITIONS */
 /**
  * struct binary_tree_s - Binary tree node
  *
@@ -14,20 +17,22 @@
  */
 struct binary_tree_s
 {
-int n;
-struct binary_tree_s *parent;
-struct binary_tree_s *left;
-struct binary_tree_s *right;
+	int n;
+	struct binary_tree_s *parent;
+	struct binary_tree_s *left;
+	struct binary_tree_s *right;
 };
-
+/* typedef for binary tree struct */
 typedef struct binary_tree_s binary_tree_t;
-
-/* AVL Tree Structure */
+/* typedef for AVL tree struct */
 typedef struct binary_tree_s avl_t;
 
-/* Function Prototypes */
-int binary_tree_is_avl(const binary_tree_t *tree);
+/* FUNCTION PROTOTYPES */
+/* given function to print binary tree */
 void binary_tree_print(const binary_tree_t *tree);
+/* function that checks if binary tree is a valid AVL tree */
+int binary_tree_is_avl(const binary_tree_t *tree);
+/* */
+binary_tree_t *binary_tree_node(binary_tree_t *node, int val);
 
-#endif /* BINARY_TREES_H */
-
+#endif

@@ -1,6 +1,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "binary_trees.h"
+binary_tree_t *binary_tree_node(binary_tree_t *parent, int n)
+{
+  binary_tree_t *node;
+  node = malloc(sizeof(binary_tree_t));
+  node->parent = parent;
+  node->n = n;
+  node->left = NULL;
+  node->right = NULL;
+  return (node);
+}
 
 /**
  * basic_tree - Build a basic binary tree
